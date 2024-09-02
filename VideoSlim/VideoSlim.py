@@ -170,9 +170,13 @@ class DragDropApp():
         self.label1 = Label(self.root, textvariable=self.Label1_title, anchor=W)
         self.label1.place(x=26, y=8, width=300, height=24)
 
+        # 进度条
+        self.progressBar = tkinter.ttk.Progressbar(self.root,length=200)
+        self.progressBar.pack_forget()
+
         # 文件框
         self.text_box = Text(self.root, width=100, height=20)
-        self.text_box.place(x=24, y=40, width=480, height=220)
+        self.text_box.place(x=24, y=45, width=480, height=220)
 
         # 清空按钮
         button2_title = StringVar()
@@ -250,6 +254,8 @@ class DragDropApp():
                 return False
             lines.remove("")
             index = 0
+            self.progressBar.pack()
+            self.progressBar.place(x=30,y=30)
             for file_name in lines:
                 index += 1
                 if os.path.isdir(file_name):
