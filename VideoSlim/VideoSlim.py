@@ -291,8 +291,6 @@ class DragDropApp():
                         command2 = r'.\tools\neroAacEnc.exe -ignorelength -lc -br 128000 -if ".\old_atemp.wav" -of ".\old_atemp.mp4"'
                         command3 = rf'.\tools\x264_64-8bit.exe --crf {config.X264.crf} --preset {config.X264.preset} -I {config.X264.I} -r {config.X264.r} -b {config.X264.b} --me umh -i 1 --scenecut 60 -f 1:1 --qcomp 0.5 --psy-rd 0.3:0 --aq-mode 2 --aq-strength 0.8 -o ".\old_vtemp.mp4"  "{file_name}"'
                         command4 = r'.\tools\mp4box.exe -add ".\old_vtemp.mp4#trackID=1:name=" -add ".\old_atemp.mp4#trackID=1:name=" -new "{}"'
-                        command5 = "del .\\old_atemp.mp4 .\\old_vtemp.mp4"
-                        command6 = r'del "{}"'
 
                         # opencl 使用 gpu 辅助进行
                         if config.X264.opencl_acceleration:
@@ -308,6 +306,7 @@ class DragDropApp():
                             os.remove("./old_vtemp.mp4")
 
                         try:
+                            # 
                             process1 = subprocess.Popen(command1, shell=True,
                                                         creationflags=CREATE_NO_WINDOW)
                             process1.wait()
